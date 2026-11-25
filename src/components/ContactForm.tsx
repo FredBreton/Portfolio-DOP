@@ -60,7 +60,7 @@ export function ContactForm({ locale, type }: { locale: Locale; type: 'film' | '
         </>
       )}
       {state.status === 'erreur' && <p className="error" role="alert" tabIndex={-1} ref={status}>{t.errors[state.error]}</p>}
-      <button className="button" disabled={pending}>{pending ? t.sending : t.send}</button>
+      <button className="button arrow" disabled={pending}>{pending ? t.sending : t.send}</button>
     </form>
   )
 }

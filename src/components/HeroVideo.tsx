@@ -46,7 +46,7 @@ export function HeroVideo({ locale, video, poster, alt, reel }: Props) {
         />
       ) : poster ? <img src={poster} alt={alt} fetchPriority="high" /> : null}
       <div className="hero-actions">
-        {embed && <button type="button" className="button" onClick={showReel}>{t.watchReel}</button>}
+        {embed && <button type="button" className="button play" onClick={showReel}>{t.watchReel}</button>}
         {video && !broken && <button type="button" className="button quiet" onClick={toggle}>{playing ? t.pause : t.play}</button>}
       </div>
       {embed && (

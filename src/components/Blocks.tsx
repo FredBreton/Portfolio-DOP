@@ -98,7 +98,7 @@ async function BlockView({ block, locale }: { block: AnyBlock; locale: Locale })
         <section className="block call">
           <Title>{block.titre}</Title>
           {block.texte && <p>{block.texte}</p>}
-          <Link className="button" href={`${toPublic(locale, '/contact')}${block.type === 'video' ? '?type=video' : ''}`}>
+          <Link className="button arrow" href={`${toPublic(locale, '/contact')}${block.type === 'video' ? '?type=video' : ''}`}>
             {block.libelle || copy[locale].contactMe}
           </Link>
         </section>

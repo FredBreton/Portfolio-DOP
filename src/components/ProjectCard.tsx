@@ -10,7 +10,7 @@ export function ProjectCard({ project, locale }: { project: Project; locale: Loc
   return (
     <li className="card">
       <Link href={toPublic(locale, `/projets/${project.slug}`)}>
-        <Picture image={media(project.couverture)} sizes="(max-width: 640px) 86vw, 560px" />
+        <span className="frame"><Picture image={media(project.couverture)} sizes="(max-width: 640px) 86vw, 560px" /></span>
         <span className="caption">
           <b>{project.titre}</b>
           <span>{project.realisation ? `${copy[locale].directedBy} ${locale === 'fr' ? ': ' : ''}${project.realisation}` : project.production}</span>

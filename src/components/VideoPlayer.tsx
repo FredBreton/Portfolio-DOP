@@ -19,7 +19,7 @@ export function VideoPlayer({ locale, url, title, children }: { locale: Locale; 
         ) : (
           <button type="button" onClick={() => setPlaying(true)} aria-label={`${t.playVideo} : ${title}`}>
             {children}
-            <span className="button" aria-hidden>{t.playVideo}</span>
+            <span className="button play" aria-hidden>{t.playVideo}</span>
           </button>
         )}
       </div>

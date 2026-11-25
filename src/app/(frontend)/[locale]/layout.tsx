@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Hanken_Grotesk } from 'next/font/google'
+import { Hanken_Grotesk, Instrument_Serif } from 'next/font/google'
 import { draftMode } from 'next/headers'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -12,6 +12,7 @@ import { copy, isLocale, toPublic } from '@/lib/locale'
 import './site.css'
 
 const font = Hanken_Grotesk({ subsets: ['latin'], weight: ['400', '500', '600'], display: 'swap' })
+const serif = Instrument_Serif({ subsets: ['latin'], weight: '400', style: ['normal', 'italic'], display: 'swap', variable: '--serif' })
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -46,13 +47,13 @@ export default async function Layout({ children, params }: Props & { children: R
   const [s, menu, draft] = await Promise.all([getSettings(locale), getMenu(locale), draftMode()])
 
   return (
-    <html lang={locale === 'fr' ? 'fr-CA' : 'en-CA'}>
+    <html lang={locale === 'fr' ? 'fr-CA' : 'en-CA'} className={serif.variable}>
       <body className={font.className}>
         <a className="skip" href="#contenu">{t.skip}</a>
         {draft.isEnabled && <p className="draft">{t.preview} <a href="/preview?fin=1">{t.leavePreview}</a></p>}
         <div className="shell">
           <header className="head">
-            <Link className="name" href={toPublic(locale, '/')}>{s.nom}<span>{s.metier}</span></Link>
+            <Link className="name" href={toPublic(locale, '/')}><b>{s.nom}</b><span>{s.metier}</span></Link>
             <nav aria-label={t.menu}>
               <Link href={toPublic(locale, '/#projets')}>{t.projects}</Link>
               {menu.map((page) => <Link key={page.id} href={toPublic(locale, `/${page.slug}`)}>{page.titre}</Link>)}
