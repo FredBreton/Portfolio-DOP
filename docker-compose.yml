@@ -1,0 +1,12 @@
+# Base de données locale seulement. Le mot de passe « local » ne sert qu'ici.
+services:
+  db:
+    image: postgres:17-alpine
+    ports: ["127.0.0.1:54329:5432"]
+    environment:
+      POSTGRES_USER: fred
+      POSTGRES_PASSWORD: local
+      POSTGRES_DB: fred
+    volumes: ["db:/var/lib/postgresql/data"]
+volumes:
+  db:
