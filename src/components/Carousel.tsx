@@ -19,6 +19,7 @@ export function Carousel({ locale, title, label, kind, children }: Props) {
       start: el.scrollLeft <= 2,
       end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 2,
     })
+    update()
     const observer = new ResizeObserver(update)
     observer.observe(el)
     for (const child of el.children) observer.observe(child)

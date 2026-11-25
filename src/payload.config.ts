@@ -2,7 +2,6 @@ import { postgresAdapter } from '@payloadcms/db-postgres'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { s3Storage } from '@payloadcms/storage-s3'
-import { en } from '@payloadcms/translations/languages/en'
 import { fr } from '@payloadcms/translations/languages/fr'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -25,7 +24,7 @@ export default buildConfig({
     importMap: { baseDir: dirname },
     meta: { titleSuffix: ' · Frédérick Breton' },
   },
-  i18n: { supportedLanguages: { fr, en }, fallbackLanguage: 'fr' },
+  i18n: { supportedLanguages: { fr }, fallbackLanguage: 'fr' },
   localization: {
     locales: [{ code: 'fr', label: 'Français' }, { code: 'en', label: 'Anglais' }],
     defaultLocale: 'fr',

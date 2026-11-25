@@ -26,6 +26,8 @@ before(async () => {
   await payload.updateGlobal({ slug: 'reglages', data: { nom: 'Test', metier: 'Test', courriel: 'recoit@exemple.test', courrielMessages: 'prive@exemple.test' } })
 })
 after(async () => {
+  await payload.delete({ collection: 'projects', where: { id: { exists: true } } })
+  await payload.delete({ collection: 'media', where: { id: { exists: true } } })
   await payload.destroy()
   setTimeout(() => process.exit(), 200).unref()
 })
