@@ -46,7 +46,6 @@ export default async function ProjectPage({ params }: Props) {
     [t.role, project.role],
     [t.year, project.annee],
     ...(project.equipe ?? []).map((m) => [m.poste, m.noms]),
-    [t.camera, project.camera],
   ].filter(([label, value]) => label && value)
 
   return (

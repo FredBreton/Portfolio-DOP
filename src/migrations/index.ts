@@ -3,6 +3,7 @@ import * as migration_20261126_160533_projet_details from './20261126_160533_pro
 import * as migration_20261126_161652_video_traduite from './20261126_161652_video_traduite';
 import * as migration_20261126_165919_mention_vignette from './20261126_165919_mention_vignette';
 import * as migration_20261126_170449_video_type from './20261126_170449_video_type';
+import * as migration_20261126_172834_sans_camera from './20261126_172834_sans_camera';
 
 export const migrations = [
   {
@@ -28,6 +29,11 @@ export const migrations = [
   {
     up: migration_20261126_170449_video_type.up,
     down: migration_20261126_170449_video_type.down,
-    name: '20261126_170449_video_type'
+    name: '20261126_170449_video_type',
+  },
+  {
+    up: migration_20261126_172834_sans_camera.up,
+    down: migration_20261126_172834_sans_camera.down,
+    name: '20261126_172834_sans_camera'
   },
 ];

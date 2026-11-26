@@ -80,7 +80,6 @@ const Projects: CollectionConfig = {
                 { name: 'role', label: 'Rôle de Frédérick', type: 'text', localized: true },
               ],
             },
-            { name: 'camera', label: 'Caméra et objectifs', type: 'text', admin: { placeholder: 'ARRI Alexa Mini · Cooke S4' } },
             {
               name: 'equipe', label: 'Autres membres de l’équipe', labels: { singular: 'Poste', plural: 'Postes' }, type: 'array',
               fields: [{

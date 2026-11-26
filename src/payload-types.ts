@@ -168,7 +168,6 @@ export interface Project {
   realisation?: string | null;
   production?: string | null;
   role?: string | null;
-  camera?: string | null;
   equipe?:
     | {
         poste: string;
@@ -569,7 +568,6 @@ export interface ProjectsSelect<T extends boolean = true> {
   realisation?: T;
   production?: T;
   role?: T;
-  camera?: T;
   equipe?:
     | T
     | {
