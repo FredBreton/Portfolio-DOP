@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
-const TARGETS = '.words, .block, .carousel, .project-text, .next, .frame, .cover, .player-frame, .split, .stills li'
+const TARGETS = '.words, .block, .carousel, .project-text, .next, .frame, .cover, .player-frame, .split, .stills li, .gallery li'
 
 // Ajoute .in aux éléments quand ils entrent à l'écran; sans JavaScript, tout reste visible.
 export function Reveal() {

@@ -4,7 +4,10 @@ Pour modifier le site, ouvre l'adresse du site suivie de `/admin` et connecte-to
 
 ## Les gestes courants
 
-**Ajouter un projet :** Projets, puis Créer. Titre, catégorie et image principale suffisent. Ajoute ensuite les images, la vidéo et les crédits, puis **Publier**.
+**Ajouter un projet :** Projets, puis Créer. Titre, catégorie et image principale suffisent. Les autres champs sont rangés en onglets, puis **Publier** :
+- **Le film :** synopsis et boutons « Où voir le film » (louer, Vimeo, festival…).
+- **Images et vidéo :** bande-annonce et stills (6 à 12 images du film, affichées en grille et agrandissables).
+- **Équipe et prix :** réalisation, ton rôle, caméra et objectifs, autres postes, et les sélections et prix du film.
 
 **Changer l'ordre :** dans la liste des projets, des catégories ou des pages, glisse une ligne par sa poignée à gauche.
 

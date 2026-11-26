@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { Carousel } from '@/components/Carousel'
+import { Gallery } from '@/components/Gallery'
 import { Picture } from '@/components/Picture'
 import { Words } from '@/components/Words'
 import { VideoPlayer } from '@/components/VideoPlayer'
@@ -45,24 +45,38 @@ export default async function ProjectPage({ params }: Props) {
     [t.production, project.production],
     [t.role, project.role],
     [t.year, project.annee],
-  ].filter(([, value]) => value)
+    ...(project.equipe ?? []).map((m) => [m.poste, m.noms]),
+    [t.camera, project.camera],
+  ].filter(([label, value]) => label && value)
 
   return (
     <article className="project">
+      <Link className="back" href={toPublic(locale, '/#projets')}>← {t.allProjects}</Link>
       {project.video ? <VideoPlayer locale={locale} url={project.video} title={project.titre}>{cover}</VideoPlayer> : <div className="cover">{cover}</div>}
       <div className="project-text">
         <div>
           <h1><Words text={project.titre} /></h1>
           {project.format && <p className="muted">{project.format}</p>}
           {project.description && <p className="lead">{project.description}</p>}
-          {project.lien && <p><a className="link" href={project.lien} target="_blank" rel="noreferrer">{t.seeProject}</a></p>}
+          {project.liens && project.liens.length > 0 && (
+            <p className="watch">
+              {project.liens.map((l, i) => (
+                <a key={l.id} className={`button arrow${i > 0 ? ' quiet' : ''}`} href={l.url} target="_blank" rel="noreferrer">{l.libelle}</a>
+              ))}
+            </p>
+          )}
         </div>
-        {credits.length > 0 && <dl>{credits.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>}
+        {credits.length > 0 && <dl>{credits.map(([label, value], i) => <div key={i}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>}
       </div>
       {images.length > 0 && (
-        <Carousel locale={locale} label={t.images} kind="stills">
-          {images.map((image, i) => <li key={`${image.id}-${i}`}><Picture image={image} sizes="(max-width: 640px) 86vw, 900px" /></li>)}
-        </Carousel>
+        <Gallery
+          locale={locale} title={t.stills}
+          items={images.map((image) => ({
+            thumb: <Picture image={image} sizes="(max-width: 700px) 90vw, 560px" />,
+            src: image.sizes?.grande?.url ?? image.url ?? '',
+            alt: image.alt ?? '',
+          }))}
+        />
       )}
       {project.prix && project.prix.length > 0 && (
         <section className="block"><h2>{t.awards}</h2><ul className="awards">{project.prix.map((p) => <li key={p.id}>{p.texte}</li>)}</ul></section>

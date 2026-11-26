@@ -144,13 +144,34 @@ export interface Project {
   categorie: number | Category;
   format?: string | null;
   annee?: number | null;
-  couverture: number | Media;
-  images?: (number | Media)[] | null;
-  video?: string | null;
   description?: string | null;
+  /**
+   * Boutons sous le synopsis. Ex. : Louer le film, Voir sur Vimeo.
+   */
+  liens?:
+    | {
+        libelle: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  couverture: number | Media;
+  video?: string | null;
+  /**
+   * Images du film, en grille sur la page. Idéalement 6 à 12.
+   */
+  images?: (number | Media)[] | null;
   realisation?: string | null;
   production?: string | null;
   role?: string | null;
+  camera?: string | null;
+  equipe?:
+    | {
+        poste: string;
+        noms: string;
+        id?: string | null;
+      }[]
+    | null;
   /**
    * Ce que le film a reçu, pas Frédérick personnellement. Ex. : Fantasia 2025 – Prix du public.
    */
@@ -160,7 +181,6 @@ export interface Project {
         id?: string | null;
       }[]
     | null;
-  lien?: string | null;
   seo?: {
     titre?: string | null;
     description?: string | null;
@@ -526,20 +546,34 @@ export interface ProjectsSelect<T extends boolean = true> {
   categorie?: T;
   format?: T;
   annee?: T;
-  couverture?: T;
-  images?: T;
-  video?: T;
   description?: T;
+  liens?:
+    | T
+    | {
+        libelle?: T;
+        url?: T;
+        id?: T;
+      };
+  couverture?: T;
+  video?: T;
+  images?: T;
   realisation?: T;
   production?: T;
   role?: T;
+  camera?: T;
+  equipe?:
+    | T
+    | {
+        poste?: T;
+        noms?: T;
+        id?: T;
+      };
   prix?:
     | T
     | {
         texte?: T;
         id?: T;
       };
-  lien?: T;
   seo?:
     | T
     | {

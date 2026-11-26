@@ -26,32 +26,76 @@ const Projects: CollectionConfig = {
   fields: [
     { name: 'titre', label: 'Titre', type: 'text', required: true, localized: true },
     {
-      type: 'row',
-      fields: [
-        { name: 'categorie', label: 'Catégorie', type: 'relationship', relationTo: 'categories', required: true },
-        { name: 'format', label: 'Format', type: 'text', localized: true, admin: { placeholder: 'Court métrage, long métrage, publicité…' } },
-        { name: 'annee', label: 'Année', type: 'number', min: 1900, max: 2100 },
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Le film',
+          fields: [
+            {
+              type: 'row',
+              fields: [
+                { name: 'categorie', label: 'Catégorie', type: 'relationship', relationTo: 'categories', required: true },
+                { name: 'format', label: 'Format', type: 'text', localized: true, admin: { placeholder: 'Court métrage, long métrage, publicité…' } },
+                { name: 'annee', label: 'Année', type: 'number', min: 1900, max: 2100 },
+              ],
+            },
+            { name: 'description', label: 'Synopsis', type: 'textarea', localized: true },
+            {
+              name: 'liens', label: 'Où voir le film', labels: { singular: 'Lien', plural: 'Liens' }, type: 'array',
+              admin: { description: 'Boutons sous le synopsis. Ex. : Louer le film, Voir sur Vimeo.' },
+              fields: [{
+                type: 'row',
+                fields: [
+                  { name: 'libelle', label: 'Texte du bouton', type: 'text', localized: true, required: true },
+                  { name: 'url', label: 'Adresse', type: 'text', required: true, validate: validateLink },
+                ],
+              }],
+            },
+          ],
+        },
+        {
+          label: 'Images et vidéo',
+          fields: [
+            { name: 'couverture', label: 'Image principale', type: 'upload', relationTo: 'media', required: true },
+            { name: 'video', label: 'Bande-annonce ou film (YouTube ou Vimeo)', type: 'text', validate: validateVideo },
+            {
+              name: 'images', label: 'Stills', type: 'upload', relationTo: 'media', hasMany: true,
+              admin: { description: 'Images du film, en grille sur la page. Idéalement 6 à 12.' },
+            },
+          ],
+        },
+        {
+          label: 'Équipe et prix',
+          fields: [
+            {
+              type: 'row',
+              fields: [
+                { name: 'realisation', label: 'Réalisation', type: 'text' },
+                { name: 'production', label: 'Production ou client', type: 'text' },
+                { name: 'role', label: 'Rôle de Frédérick', type: 'text', localized: true },
+              ],
+            },
+            { name: 'camera', label: 'Caméra et objectifs', type: 'text', admin: { placeholder: 'ARRI Alexa Mini · Cooke S4' } },
+            {
+              name: 'equipe', label: 'Autres membres de l’équipe', labels: { singular: 'Poste', plural: 'Postes' }, type: 'array',
+              fields: [{
+                type: 'row',
+                fields: [
+                  { name: 'poste', label: 'Poste', type: 'text', localized: true, required: true },
+                  { name: 'noms', label: 'Nom ou noms', type: 'text', required: true },
+                ],
+              }],
+            },
+            {
+              name: 'prix', label: 'Sélections et prix du film', labels: { singular: 'Sélection ou prix', plural: 'Sélections et prix' }, type: 'array',
+              admin: { description: 'Ce que le film a reçu, pas Frédérick personnellement. Ex. : Fantasia 2025 – Prix du public.' },
+              fields: [{ name: 'texte', label: 'Prix ou festival', type: 'text', localized: true, required: true }],
+            },
+          ],
+        },
+        { label: 'Référencement', fields: [seoField] },
       ],
     },
-    { name: 'couverture', label: 'Image principale', type: 'upload', relationTo: 'media', required: true },
-    { name: 'images', label: 'Carrousel d’images', type: 'upload', relationTo: 'media', hasMany: true },
-    { name: 'video', label: 'Vidéo ou bande-annonce (YouTube ou Vimeo)', type: 'text', validate: validateVideo },
-    { name: 'description', label: 'Courte description', type: 'textarea', localized: true },
-    {
-      type: 'row',
-      fields: [
-        { name: 'realisation', label: 'Réalisation', type: 'text' },
-        { name: 'production', label: 'Production ou client', type: 'text' },
-        { name: 'role', label: 'Rôle de Frédérick', type: 'text', localized: true },
-      ],
-    },
-    {
-      name: 'prix', label: 'Sélections et prix du film', labels: { singular: 'Sélection ou prix', plural: 'Sélections et prix' }, type: 'array',
-      admin: { description: 'Ce que le film a reçu, pas Frédérick personnellement. Ex. : Fantasia 2025 – Prix du public.' },
-      fields: [{ name: 'texte', label: 'Prix ou festival', type: 'text', localized: true, required: true }],
-    },
-    { name: 'lien', label: 'Lien externe', type: 'text', validate: validateLink },
-    seoField,
     slugField(),
     { name: 'accueil', label: 'Afficher sur l’accueil', type: 'checkbox', defaultValue: true, admin: { position: 'sidebar' } },
   ],
