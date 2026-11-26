@@ -11,6 +11,7 @@ export async function fillProject(payload: Payload, id: number, titre: string) {
     collection: 'projects', id, locale: 'fr',
     data: {
       ...(d.realisation && { realisation: d.realisation }),
+      ...(d.video && { video: d.video }),
       ...(d.production && { production: d.production }),
       ...(d.description && { description: d.description.fr }),
       liens: (d.liens ?? []).map((l) => ({ libelle: l.fr, url: l.url })),
