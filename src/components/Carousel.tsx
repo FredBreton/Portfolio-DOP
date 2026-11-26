@@ -4,6 +4,8 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 
 import { copy, type Locale } from '@/lib/locale'
 
+import { Words } from './Words'
+
 type Props = { locale: Locale; title?: string | null; label: string; kind: 'cards' | 'stills'; children: ReactNode }
 
 export function Carousel({ locale, title, label, kind, children }: Props) {
@@ -39,7 +41,7 @@ export function Carousel({ locale, title, label, kind, children }: Props) {
   return (
     <section className={`carousel ${kind}`} aria-label={title ?? label}>
       <div className="carousel-head">
-        {title ? <h2>{title}</h2> : <span />}
+        {title ? <h2><Words text={title} /></h2> : <span />}
         {state.overflow && (
           <div className="arrows">
             <button type="button" onClick={() => move(-1)} disabled={state.start} aria-label={t.previous}>←</button>

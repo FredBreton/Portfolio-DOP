@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { ContactForm } from '@/components/ContactForm'
+import { Words } from '@/components/Words'
 import { getSettings } from '@/lib/data'
 import { copy, isLocale } from '@/lib/locale'
 import { alternates } from '@/lib/metadata'
@@ -23,7 +24,7 @@ export default async function ContactPage({ params, searchParams }: Props) {
   const s = await getSettings(locale)
   return (
     <>
-      <div className="intro"><h1>{copy[locale].contact}</h1>{s.contactIntro && <p className="lead">{s.contactIntro}</p>}</div>
+      <div className="intro"><h1><Words text={copy[locale].contact} /></h1>{s.contactIntro && <p className="lead">{s.contactIntro}</p>}</div>
       <div className="contact">
         <ContactForm locale={locale} type={type === 'video' ? 'video' : 'film'} />
         <div className="coords">

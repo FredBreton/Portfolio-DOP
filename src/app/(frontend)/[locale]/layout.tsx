@@ -3,9 +3,10 @@ import { Hanken_Grotesk, Instrument_Serif } from 'next/font/google'
 import { draftMode } from 'next/headers'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import type { ReactNode } from 'react'
+import { ViewTransition, type ReactNode } from 'react'
 
 import { LanguageLink } from '@/components/LanguageLink'
+import { Reveal } from '@/components/Reveal'
 import { getMenu, getSettings, media, siteUrl } from '@/lib/data'
 import { copy, isLocale, toPublic } from '@/lib/locale'
 
@@ -61,7 +62,8 @@ export default async function Layout({ children, params }: Props & { children: R
               <LanguageLink locale={locale} />
             </nav>
           </header>
-          <main id="contenu">{children}</main>
+          <main id="contenu"><ViewTransition default="page">{children}</ViewTransition></main>
+          <Reveal />
           <footer className="foot">
             <Link href={toPublic(locale, '/contact')}>{t.contactMe}</Link>
             {s.reseaux?.map((r) => <a key={r.id} href={r.url} target="_blank" rel="noreferrer">{r.nom}</a>)}

@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 
 import { Carousel } from '@/components/Carousel'
 import { Picture } from '@/components/Picture'
+import { Words } from '@/components/Words'
 import { VideoPlayer } from '@/components/VideoPlayer'
 import { getProject, getProjectsOf, idOf, media, medias } from '@/lib/data'
 import { copy, isLocale, toPublic } from '@/lib/locale'
@@ -51,7 +52,7 @@ export default async function ProjectPage({ params }: Props) {
       {project.video ? <VideoPlayer locale={locale} url={project.video} title={project.titre}>{cover}</VideoPlayer> : <div className="cover">{cover}</div>}
       <div className="project-text">
         <div>
-          <h1>{project.titre}</h1>
+          <h1><Words text={project.titre} /></h1>
           {project.format && <p className="muted">{project.format}</p>}
           {project.description && <p className="lead">{project.description}</p>}
           {project.lien && <p><a className="link" href={project.lien} target="_blank" rel="noreferrer">{t.seeProject}</a></p>}
