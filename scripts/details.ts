@@ -6,6 +6,7 @@
 type Line = { fr: string; en: string }
 type Details = {
   realisation?: string
+  annee?: number
   /** Bande-annonce Vimeo de Vital Productions; sans version anglaise, l'anglais montre la française. */
   video?: { fr: string; en?: string }
   production?: string
@@ -27,6 +28,11 @@ export const details: Record<string, Details> = {
       en: 'A film about the shadows born in childhood, and the first wounds that leave a lasting mark.',
     },
     equipe: [{ ...SCENARIO, noms: 'Alicia Lemieux' }],
+  },
+  // Aucun synopsis en ligne. Année et interprète : fiches de Devi Julia Pelletier chez Agence Mel et Agence Lafond.
+  'Mes visions de chat': {
+    annee: 2022,
+    equipe: [{ fr: 'Interprétation', en: 'Cast', noms: 'Devi Julia Pelletier' }],
   },
   'Nucléaire': {
     description: {
