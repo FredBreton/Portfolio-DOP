@@ -96,15 +96,16 @@ dialog > a { display: inline-block; margin-top: 12px; color: var(--muted); }
 .track > li { flex: none; scroll-snap-align: start; }
 .cards .track > li { width: 46%; }
 .frame { display: block; overflow: hidden; }
-.cursor { position: fixed; left: 0; top: 0; z-index: 50; pointer-events: none; transition: translate 0.12s var(--ease); }
+.cursor { position: fixed; left: 0; top: 0; z-index: 50; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
+.cursor.visible { opacity: 1; }
+/* Cercle de 54 px réduit à 30 px; il grossit et se remplit sur une image de projet. */
 .cursor span {
   display: grid; place-items: center; width: 54px; height: 54px; margin: -27px 0 0 -27px; padding-left: 0.14em;
-  border-radius: 50%; background: rgb(241 239 234 / 0.85); color: var(--bg); backdrop-filter: blur(4px);
+  border: 1.6px solid rgb(255 255 255 / 0.55); border-radius: 50%; color: transparent;
   font-size: 0.6rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
-  scale: 0; transition: scale 0.45s var(--ease);
+  scale: 0.56; transition: scale 0.45s var(--ease), background-color 0.35s, color 0.3s, border-color 0.35s;
 }
-.cursor.on span { scale: 1; }
-.cursor-label .card .frame { cursor: none; }
+.cursor.on span { scale: 1; border-color: transparent; background: rgb(241 239 234 / 0.85); color: var(--bg); backdrop-filter: blur(4px); }
 .card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; filter: brightness(0.9); transition: transform 1.2s var(--ease), filter 0.8s var(--ease); }
 .card a:hover { text-decoration: none; }
 .card a:hover img { transform: scale(1.04); filter: brightness(1); }
