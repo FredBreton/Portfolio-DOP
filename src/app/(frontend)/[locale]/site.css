@@ -73,7 +73,7 @@ main { flex: 1; }
 .button.arrow:hover::after { transform: translateX(5px); }
 
 .hero { position: relative; }
-.hero > video, .hero > img { width: 100%; aspect-ratio: 2048 / 858; object-fit: cover; background: #161616; }
+.hero > video, .hero > img { width: 100%; height: clamp(340px, calc(100svh - 270px), 880px); object-fit: cover; background: #161616; }
 .hero::after { content: ''; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent, rgb(0 0 0 / 0.45)); pointer-events: none; }
 .hero-actions { position: absolute; z-index: 1; right: 22px; bottom: 22px; display: flex; gap: 10px; }
 .toggle { position: absolute; z-index: 1; left: 18px; bottom: 18px; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid rgb(255 255 255 / 0.35); border-radius: 50%; background: rgb(0 0 0 / 0.3); color: #fff; opacity: 0.7; backdrop-filter: blur(6px); transition: opacity 0.3s, border-color 0.3s; }
@@ -96,6 +96,15 @@ dialog > a { display: inline-block; margin-top: 12px; color: var(--muted); }
 .track > li { flex: none; scroll-snap-align: start; }
 .cards .track > li { width: 46%; }
 .frame { display: block; overflow: hidden; }
+.cursor { position: fixed; left: 0; top: 0; z-index: 50; pointer-events: none; transition: translate 0.12s var(--ease); }
+.cursor span {
+  display: grid; place-items: center; width: 84px; height: 84px; margin: -42px 0 0 -42px; padding-left: 0.16em;
+  border-radius: 50%; background: var(--text); color: var(--bg);
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+  scale: 0; transition: scale 0.45s var(--ease);
+}
+.cursor.on span { scale: 1; }
+.cursor-label .card .frame { cursor: none; }
 .card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; filter: brightness(0.9); transition: transform 1.2s var(--ease), filter 0.8s var(--ease); }
 .card a:hover { text-decoration: none; }
 .card a:hover img { transform: scale(1.04); filter: brightness(1); }
@@ -167,7 +176,7 @@ form.message { display: grid; gap: 20px; }
 @media (max-width: 640px) {
   .head { padding: 24px 0; }
   .head nav { gap: 2px 22px; }
-  .hero > video, .hero > img { aspect-ratio: 4 / 3; }
+  .hero > video, .hero > img { height: auto; aspect-ratio: 4 / 3; }
   .hero-actions { right: 10px; bottom: 10px; }
   .toggle { left: 10px; bottom: 10px; }
   .hero-actions .button { padding: 9px 14px; font-size: 0.68rem; }

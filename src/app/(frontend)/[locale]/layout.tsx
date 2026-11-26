@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ViewTransition, type ReactNode } from 'react'
 
+import { CursorLabel } from '@/components/CursorLabel'
 import { LanguageLink } from '@/components/LanguageLink'
 import { Reveal } from '@/components/Reveal'
 import { getMenu, getSettings, media, siteUrl } from '@/lib/data'
@@ -64,6 +65,7 @@ export default async function Layout({ children, params }: Props & { children: R
           </header>
           <main id="contenu"><ViewTransition default="page">{children}</ViewTransition></main>
           <Reveal />
+          <CursorLabel label={t.view} />
           <footer className="foot">
             <Link href={toPublic(locale, '/contact')}>{t.contactMe}</Link>
             {s.reseaux?.map((r) => <a key={r.id} href={r.url} target="_blank" rel="noreferrer">{r.nom}</a>)}
