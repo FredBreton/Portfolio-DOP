@@ -95,7 +95,13 @@ dialog > a { display: inline-block; margin-top: 12px; color: var(--muted); }
 .track::-webkit-scrollbar { display: none; }
 .track > li { flex: none; scroll-snap-align: start; }
 .cards .track > li { width: 46%; }
-.frame { display: block; overflow: hidden; }
+.frame { position: relative; display: block; overflow: hidden; }
+/* Titre du film par-dessus l'image, seulement avec une souris (pas de survol sur téléphone). */
+.overlay { display: none; }
+@media (hover: hover) {
+  .overlay { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; background: rgb(0 0 0 / 0.5); font-family: var(--display); font-size: clamp(1.6rem, 2.6vw, 2.4rem); text-align: center; text-wrap: balance; opacity: 0; transition: opacity 0.5s var(--ease); }
+  .card a:is(:hover, :focus-visible) .overlay { opacity: 1; }
+}
 .card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; filter: brightness(0.9); transition: transform 1.2s var(--ease), filter 0.8s var(--ease); }
 .card a:hover { text-decoration: none; }
 .card a:hover img { transform: scale(1.04); filter: brightness(1); }
