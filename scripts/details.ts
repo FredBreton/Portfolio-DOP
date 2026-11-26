@@ -5,8 +5,8 @@
 type Line = { fr: string; en: string }
 type Details = {
   realisation?: string
-  /** Bande-annonce Vimeo de Vital Productions. */
-  video?: string
+  /** Bande-annonce Vimeo de Vital Productions; sans version anglaise, l'anglais montre la française. */
+  video?: { fr: string; en?: string }
   production?: string
   description?: Line
   liens?: (Line & { url: string })[]
@@ -23,7 +23,7 @@ export const details: Record<string, Details> = {
   'Nucléaire': { liens: vimeo('https://vimeo.com/1147476870') },
   'Shattered': { liens: vimeo('https://vimeo.com/862045443') },
   'Gro$ lot': {
-    video: 'https://vimeo.com/796682492',
+    video: { fr: 'https://vimeo.com/796682492' },
     production: 'Serge Desrosiers, Vital Productions',
     description: {
       fr: 'Dans un village de Noël, un billet de loterie offert pour consoler un ami s’avère gagnant : un million de dollars. L’argent met leur amitié et leurs valeurs à l’épreuve.',
@@ -39,7 +39,7 @@ export const details: Record<string, Details> = {
     ],
   },
   'Herby': {
-    video: 'https://vimeo.com/1181207584',
+    video: { fr: 'https://vimeo.com/1181207584', en: 'https://vimeo.com/1181207647' },
     production: 'Roxanne Geoffroy, Serge Desrosiers, Vital Productions',
     description: {
       fr: 'À 53 ans, Herby réveille un rêve de jeunesse : piloter en NASCAR Canada. Le film suit sa première saison, entre espoirs, blessures du passé et retrouvailles.',
@@ -52,7 +52,7 @@ export const details: Record<string, Details> = {
     ],
   },
   'Au pied du mur': {
-    video: 'https://vimeo.com/1091824894',
+    video: { fr: 'https://vimeo.com/1091824894', en: 'https://vimeo.com/1091824309' },
     realisation: 'Alexandra Elkin, Étienne Plasse',
     production: 'Serge Desrosiers, Vital Productions',
     description: {

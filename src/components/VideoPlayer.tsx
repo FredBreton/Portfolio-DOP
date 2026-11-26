@@ -19,7 +19,10 @@ export function VideoPlayer({ locale, url, title, children }: { locale: Locale; 
         ) : (
           <button type="button" onClick={() => setPlaying(true)} aria-label={`${t.playVideo} : ${title}`}>
             {children}
-            <span className="button play" aria-hidden>{t.playVideo}</span>
+            <span className="play-badge" aria-hidden>
+              <span className="ring"><svg viewBox="0 0 12 12"><path d="M3 1.5v9l7.5-4.5z" /></svg></span>
+              <span className="play-label">{t.playVideo}</span>
+            </span>
           </button>
         )}
       </div>
