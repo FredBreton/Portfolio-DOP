@@ -52,7 +52,7 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <article className="project">
       <Link className="back" href={toPublic(locale, '/#projets')}>← {t.allProjects}</Link>
-      {project.video ? <VideoPlayer locale={locale} url={project.video} title={project.titre}>{cover}</VideoPlayer> : <div className="cover">{cover}</div>}
+      {project.video ? <VideoPlayer locale={locale} url={project.video} title={project.titre} label={project.videoType === 'film' ? t.watchFilm : t.watchTrailer}>{cover}</VideoPlayer> : <div className="cover">{cover}</div>}
       <div className="project-text">
         <div>
           <h1><Words text={project.titre} /></h1>

@@ -160,6 +160,7 @@ export interface Project {
    * Une version par langue; vide en anglais = la même qu’en français.
    */
   video?: string | null;
+  videoType?: ('bande' | 'film') | null;
   /**
    * Images du film, en grille sur la page. Idéalement 6 à 12.
    */
@@ -563,6 +564,7 @@ export interface ProjectsSelect<T extends boolean = true> {
       };
   couverture?: T;
   video?: T;
+  videoType?: T;
   images?: T;
   realisation?: T;
   production?: T;

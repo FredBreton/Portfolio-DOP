@@ -59,6 +59,11 @@ const Projects: CollectionConfig = {
             { name: 'couverture', label: 'Image principale', type: 'upload', relationTo: 'media', required: true },
             { name: 'video', label: 'Bande-annonce ou film (YouTube ou Vimeo)', type: 'text', localized: true, validate: validateVideo, admin: { description: 'Une version par langue; vide en anglais = la même qu’en français.' } },
             {
+              name: 'videoType', label: 'Cette vidéo est…', type: 'radio', defaultValue: 'bande',
+              options: [{ label: 'Une bande-annonce', value: 'bande' }, { label: 'Le film complet', value: 'film' }],
+              admin: { layout: 'horizontal', condition: (data) => Boolean(data?.video) },
+            },
+            {
               name: 'images', label: 'Stills', type: 'upload', relationTo: 'media', hasMany: true,
               admin: { description: 'Images du film, en grille sur la page. Idéalement 6 à 12.' },
             },
