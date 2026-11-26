@@ -178,9 +178,16 @@ dd { margin: 0; }
 .lightbox img { width: 100%; max-height: 80vh; object-fit: contain; background: #000; }
 .lightbox-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 12px; }
 .lightbox-bar form { margin: 0; }
-.next { display: grid; gap: 4px; margin-top: 88px; padding-top: 24px; border-top: 1px solid var(--line); }
-.next .muted { font-size: 0.76rem; letter-spacing: 0.16em; text-transform: uppercase; }
-.next a { font-family: var(--display); font-size: clamp(2rem, 4vw, 3rem); }
+/* Projet suivant : une bande avec l'image du prochain film et son titre par-dessus. */
+.next { position: relative; display: block; margin-top: 96px; overflow: clip; background: #161616; }
+.next:hover { text-decoration: none; }
+.next img { width: 100%; height: clamp(220px, 32vw, 420px); object-fit: cover; filter: brightness(0.45); transition: transform 1.4s var(--ease), filter 0.8s var(--ease); }
+.next:hover img { transform: scale(1.04); filter: brightness(0.62); }
+.next-text { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 10px; padding: 24px; text-align: center; }
+.next-label { font-size: 0.76rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgb(255 255 255 / 0.75); }
+.next-title { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.05; }
+.next-title span { display: inline-block; transition: transform 0.5s var(--ease); }
+.next:hover .next-title span { transform: translateX(10px); }
 
 .contact { display: grid; grid-template-columns: 3fr 2fr; gap: 48px 72px; margin-top: 32px; }
 form.message { display: grid; gap: 20px; }

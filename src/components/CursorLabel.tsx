@@ -25,7 +25,7 @@ export function CursorLabel({ label }: { label: string }) {
       target.x = e.clientX
       target.y = e.clientY
       el.classList.add('visible')
-      el.classList.toggle('on', Boolean((e.target as Element).closest?.('.card .frame')))
+      el.classList.toggle('on', Boolean((e.target as Element).closest?.('.card .frame, .next')))
       if (!frame) frame = requestAnimationFrame(step)
     }
     const hide = () => el.classList.remove('visible', 'on')

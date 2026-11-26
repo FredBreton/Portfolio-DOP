@@ -81,7 +81,15 @@ export default async function ProjectPage({ params }: Props) {
       {project.prix && project.prix.length > 0 && (
         <section className="block"><h2>{t.awards}</h2><ul className="awards">{project.prix.map((p) => <li key={p.id}>{p.texte}</li>)}</ul></section>
       )}
-      {next && <p className="next"><span className="muted">{t.nextProject}</span> <Link href={toPublic(locale, `/projets/${next.slug}`)}>{next.titre}</Link></p>}
+      {next && (
+        <Link className="next" href={toPublic(locale, `/projets/${next.slug}`)}>
+          <Picture image={media(next.couverture)} sizes="(max-width: 1320px) 90vw, 1144px" />
+          <span className="next-text">
+            <span className="next-label">{t.nextProject}</span>
+            <span className="next-title">{next.titre} <span aria-hidden="true">→</span></span>
+          </span>
+        </Link>
+      )}
     </article>
   )
 }
