@@ -87,6 +87,10 @@ const Projects: CollectionConfig = {
               }],
             },
             {
+              name: 'mention', label: 'Mention sur la vignette', type: 'text', localized: true,
+              admin: { description: 'Petite étiquette sur l’image du film à l’accueil, pour un vrai prix seulement. Ex. : Prix du public · Fantasia 2025. Vide = rien.' },
+            },
+            {
               name: 'prix', label: 'Sélections et prix du film', labels: { singular: 'Sélection ou prix', plural: 'Sélections et prix' }, type: 'array',
               admin: { description: 'Ce que le film a reçu, pas Frédérick personnellement. Ex. : Fantasia 2025 – Prix du public.' },
               fields: [{ name: 'texte', label: 'Prix ou festival', type: 'text', localized: true, required: true }],

@@ -176,6 +176,10 @@ export interface Project {
       }[]
     | null;
   /**
+   * Petite étiquette sur l’image du film à l’accueil, pour un vrai prix seulement. Ex. : Prix du public · Fantasia 2025. Vide = rien.
+   */
+  mention?: string | null;
+  /**
    * Ce que le film a reçu, pas Frédérick personnellement. Ex. : Fantasia 2025 – Prix du public.
    */
   prix?:
@@ -571,6 +575,7 @@ export interface ProjectsSelect<T extends boolean = true> {
         noms?: T;
         id?: T;
       };
+  mention?: T;
   prix?:
     | T
     | {

@@ -15,6 +15,7 @@ export async function fillProject(payload: Payload, id: number, titre: string) {
       ...(d.video && { video: d.video.fr }),
       ...(d.production && { production: d.production }),
       ...(d.description && { description: d.description.fr }),
+      ...(d.mention && { mention: d.mention.fr }),
       liens: (d.liens ?? []).map((l) => ({ libelle: l.fr, url: l.url })),
       equipe: (d.equipe ?? []).map((m) => ({ poste: m.fr, noms: m.noms })),
       prix: prix.map((p) => ({ texte: p.fr })),
@@ -25,6 +26,7 @@ export async function fillProject(payload: Payload, id: number, titre: string) {
     collection: 'projects', id, locale: 'en',
     data: {
       ...(d.description && { description: d.description.en }),
+      ...(d.mention && { mention: d.mention.en }),
       ...(d.video?.en && { video: d.video.en }),
       liens: (fr.liens ?? []).map((row, i) => ({ id: row.id, url: row.url, libelle: d.liens![i].en })),
       equipe: (fr.equipe ?? []).map((row, i) => ({ id: row.id, noms: row.noms, poste: d.equipe![i].en })),

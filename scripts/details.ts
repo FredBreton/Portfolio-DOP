@@ -6,6 +6,8 @@
 type Line = { fr: string; en: string }
 type Details = {
   realisation?: string
+  /** Étiquette d'un vrai prix sur la vignette de l'accueil. */
+  mention?: Line
   annee?: number
   /** Bande-annonce Vimeo de Vital Productions; sans version anglaise, l'anglais montre la française. */
   video?: { fr: string; en?: string }
@@ -50,6 +52,7 @@ export const details: Record<string, Details> = {
   },
   // La vidéo Vimeo n'est plus disponible (vérifié le 2026-11-26) : pas de bouton.
   'Shattered': {
+    mention: { fr: 'Mention honorable · Vienne', en: 'Honorable mention · Vienna' },
     description: {
       fr: 'En plein confinement, Alison est quittée par son copain. Seule, elle tente de passer à autre chose, mais son passé la rattrape.',
       en: 'In the middle of a lockdown, Alison’s boyfriend leaves her. Alone, she tries to move on, but her past catches up with her.',
@@ -89,6 +92,7 @@ export const details: Record<string, Details> = {
     ],
   },
   'Au pied du mur': {
+    mention: { fr: 'Prix du public · Fantasia 2025', en: 'Audience Award · Fantasia 2025' },
     video: { fr: 'https://vimeo.com/1091824894', en: 'https://vimeo.com/1091824309' },
     realisation: 'Alexandra Elkin, Étienne Plasse',
     production: 'Serge Desrosiers, Vital Productions',
