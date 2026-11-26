@@ -46,11 +46,11 @@ const creation = await category('Création vidéo', 'Video production', false)
 
 const COURT = ['Court métrage de fiction', 'Short fiction film']
 const LONG = ['Long métrage documentaire', 'Feature documentary']
-const projects = [
+const projects: { titre: string; realisation: string; categorie: number; format: string[]; annee?: number; file: string; video?: string; lien?: string; role?: string[]; alt: string[] }[] = [
   { titre: 'Dans mes élans de grande obsédée', realisation: 'Alicia Lemieux', categorie: fiction, format: COURT, annee: 2025, file: 'dans-mes-elans.png', video: 'https://www.youtube.com/watch?v=Iv631_HkWv0', alt: ['Un homme torse nu se tient le visage à deux mains', 'A shirtless man holds his face in both hands'] },
   { titre: 'Nucléaire', realisation: 'Philippe Goulet', categorie: fiction, format: COURT, file: 'nucleaire.png', lien: 'https://vimeo.com/1147476870', alt: ['Une personne masquée avance dans le noir avec une lanterne', 'A masked figure moves through the dark with a lantern'] },
   { titre: 'Mes visions de chat', realisation: 'Philippe Goulet', categorie: fiction, format: COURT, file: 'mes-visions-de-chat.jpg', alt: ['Une femme pensive, le menton appuyé sur ses mains', 'A pensive woman rests her chin on her hands'] },
-  { titre: 'Gro$ lot', realisation: 'Sharbel El-Showairy', categorie: fiction, format: COURT, file: 'gros-lot.png', lien: 'https://www.vitaldistribution.ca/films/gro%24-lot', alt: ['Un homme en costume rouge tient un papier dans la pénombre', 'A man in a red costume holds a piece of paper in the half-light'] },
+  { titre: 'Gro$ lot', realisation: 'Sharbel El-Showairy', categorie: fiction, format: COURT, file: 'gros-lot.png', role: ['Direction photo, coscénarisation et interprétation', 'Director of photography, co-writer and actor'], lien: 'https://www.vitaldistribution.ca/films/gro%24-lot', alt: ['Un homme en costume rouge tient un papier dans la pénombre', 'A man in a red costume holds a piece of paper in the half-light'] },
   { titre: 'Shattered', realisation: 'Philippe Boissier', categorie: fiction, format: COURT, file: 'shattered.png', lien: 'https://vimeo.com/862045443', alt: ['Une femme aux cheveux longs, assise près d’une fenêtre', 'A long-haired woman sits near a window'] },
   { titre: 'Herby', realisation: 'Antoine Bergevin-Richer', categorie: documentaire, format: LONG, file: 'herby.png', lien: 'https://www.vitaldistribution.ca/films/herby', alt: ['Trois silhouettes à contre-jour dans un salon', 'Three backlit silhouettes in a living room'] },
   { titre: 'Au pied du mur', realisation: 'Alexandra Elkin', categorie: documentaire, format: LONG, annee: 2025, file: 'au-pied-du-mur.png', lien: 'https://www.vitaldistribution.ca/films/au-pied-du-mur', alt: ['Une personne casquée grimpe une paroi en forêt', 'A climber in a helmet scales a rock face in the forest'] },
@@ -64,14 +64,14 @@ for (const p of projects) {
     locale: 'fr',
     data: {
       titre: p.titre, categorie: p.categorie, format: p.format[0], annee: p.annee, couverture, video: p.video, lien: p.lien,
-      realisation: p.realisation, role: 'Direction photo', accueil: true, _status: 'published',
+      realisation: p.realisation, role: p.role?.[0] ?? 'Direction photo', accueil: true, _status: 'published',
       prix: awards[p.titre]?.map((a) => ({ texte: a.fr })),
     },
   })
   await payload.update({
     collection: 'projects', id: doc.id, locale: 'en',
     data: {
-      titre: p.titre, format: p.format[1], role: 'Director of photography', _status: 'published',
+      titre: p.titre, format: p.format[1], role: p.role?.[1] ?? 'Director of photography', _status: 'published',
       prix: doc.prix?.map((row, i) => ({ id: row.id, texte: awards[p.titre][i].en })),
     },
   })
