@@ -1,6 +1,7 @@
 /**
  * Détails des projets : synopsis (résumés en nos mots), équipe et liens.
  * Équipe et production : fiches de Vital Distribution, lues le 2026-11-26.
+ * Dans mes élans, Nucléaire et Shattered : descriptions YouTube et Vimeo des films, lues le 2026-11-26.
  */
 type Line = { fr: string; en: string }
 type Details = {
@@ -20,8 +21,38 @@ const SON = { fr: 'Son', en: 'Sound' }
 const MUSIQUE = { fr: 'Musique', en: 'Music' }
 
 export const details: Record<string, Details> = {
-  'Nucléaire': { liens: vimeo('https://vimeo.com/1147476870') },
-  'Shattered': { liens: vimeo('https://vimeo.com/862045443') },
+  'Dans mes élans de grande obsédée': {
+    description: {
+      fr: 'Un film sur les ombres qui naissent dans l’enfance, et sur ces premières blessures qui laissent une longue trace.',
+      en: 'A film about the shadows born in childhood, and the first wounds that leave a lasting mark.',
+    },
+    equipe: [{ ...SCENARIO, noms: 'Alicia Lemieux' }],
+  },
+  'Nucléaire': {
+    description: {
+      fr: 'Un court métrage de poésie, porté par les poèmes d’Alicia Lemieux, dans un monde post-apocalyptique.',
+      en: 'A poetry short film carried by Alicia Lemieux’s poems, set in a post-apocalyptic world.',
+    },
+    liens: vimeo('https://vimeo.com/1147476870'),
+    equipe: [
+      { fr: 'Poèmes', en: 'Poems', noms: 'Alicia Lemieux' },
+      { fr: 'Assistance caméra', en: 'Camera assistant', noms: 'Antoine Doan' },
+      { fr: 'Direction artistique', en: 'Art direction', noms: 'Victoria Beaudoin-Côté' },
+      { ...MUSIQUE, noms: 'Inès Chfiri' },
+      { fr: 'Colorisation', en: 'Colour grading', noms: 'Steven Mercier' },
+    ],
+  },
+  // La vidéo Vimeo n'est plus disponible (vérifié le 2026-11-26) : pas de bouton.
+  'Shattered': {
+    description: {
+      fr: 'En plein confinement, Alison est quittée par son copain. Seule, elle tente de passer à autre chose, mais son passé la rattrape.',
+      en: 'In the middle of a lockdown, Alison’s boyfriend leaves her. Alone, she tries to move on, but her past catches up with her.',
+    },
+    equipe: [
+      { fr: 'Interprétation', en: 'Cast', noms: 'Camille Zorel, Xavier Truong' },
+      { ...MONTAGE, noms: 'Philippe Boissier' },
+    ],
+  },
   'Gro$ lot': {
     video: { fr: 'https://vimeo.com/796682492' },
     production: 'Serge Desrosiers, Vital Productions',

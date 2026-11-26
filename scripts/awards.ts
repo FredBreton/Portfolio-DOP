@@ -1,6 +1,6 @@
 /**
  * Sélections et prix reçus par les films (pas par Frédérick).
- * Source : fiches de Vital Distribution, lues le 2026-11-26; prix Fantasia confirmé par Alexis.
+ * Source : fiches de Vital Distribution et page Vimeo de Shattered, lues le 2026-11-26; prix Fantasia confirmé par Alexis.
  */
 type Line = { fr: string; en: string }
 
@@ -13,6 +13,12 @@ export const awards: Record<string, Line[]> = {
     { fr: '37e Festival international de cinéma francophone d’Acadie (Canada)', en: '37th Festival international de cinéma francophone d’Acadie (Canada)' },
     { fr: '3e Festival de films d’auteur de Val-Morin (Canada)', en: '3rd Festival de films d’auteur de Val-Morin (Canada)' },
     { fr: '8e Ottawa Canadian Film Festival (Canada)', en: '8th Ottawa Canadian Film Festival (Canada)' },
+  ],
+  'Shattered': [
+    { fr: 'Vienna International Film Awards – Mention honorable', en: 'Vienna International Film Awards – Honorable mention' },
+    { fr: 'New York City Independent Film Festival – Sélection', en: 'New York City Independent Film Festival – Selection' },
+    { fr: 'Festival du Fantastique de Béziers (France) – Sélection', en: 'Festival du Fantastique de Béziers (France) – Selection' },
+    { fr: 'Hallucinea Film Festival – Sélection', en: 'Hallucinea Film Festival – Selection' },
   ],
   'Au pied du mur': [
     { fr: 'Fantasia 2025 – Prix du public, argent, meilleur film québécois', en: 'Fantasia 2025 – Audience Award, silver, Best Québécois Film' },
