@@ -31,8 +31,12 @@ export const details: Record<string, Details> = {
     },
     equipe: [{ ...SCENARIO, noms: 'Alicia Lemieux' }],
   },
-  // Aucun synopsis en ligne. Année et interprète : fiches de Devi Julia Pelletier chez Agence Mel et Agence Lafond.
+  // Synopsis : Frédérick (2026-11-26). Année et interprète : fiches de Devi Julia Pelletier chez Agence Mel et Agence Lafond.
   'Mes visions de chat': {
+    description: {
+      fr: 'Un film qui explore le vide et les tensions que crée la fugue d’un chat au sein d’un couple.',
+      en: 'A film exploring the emptiness and tension left in a couple when their cat runs away.',
+    },
     annee: 2022,
     equipe: [{ fr: 'Interprétation', en: 'Cast', noms: 'Devi Julia Pelletier' }],
   },
