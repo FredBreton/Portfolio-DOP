@@ -76,6 +76,9 @@ main { flex: 1; }
 .hero > video, .hero > img { width: 100%; aspect-ratio: 2048 / 858; object-fit: cover; background: #161616; }
 .hero::after { content: ''; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent, rgb(0 0 0 / 0.45)); pointer-events: none; }
 .hero-actions { position: absolute; z-index: 1; right: 22px; bottom: 22px; display: flex; gap: 10px; }
+.toggle { position: absolute; z-index: 1; left: 18px; bottom: 18px; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid rgb(255 255 255 / 0.35); border-radius: 50%; background: rgb(0 0 0 / 0.3); color: #fff; opacity: 0.7; backdrop-filter: blur(6px); transition: opacity 0.3s, border-color 0.3s; }
+.toggle:hover, .toggle:focus-visible { opacity: 1; border-color: #fff; }
+.toggle svg { width: 11px; height: 11px; fill: currentColor; }
 dialog { width: min(1100px, 92vw); max-width: none; margin: auto; padding: 16px; border: 1px solid var(--line); background: #000; color: var(--text); }
 dialog::backdrop { background: rgb(0 0 0 / 0.85); }
 dialog form { display: flex; justify-content: flex-end; margin-bottom: 12px; }
@@ -165,7 +168,8 @@ form.message { display: grid; gap: 20px; }
   .head { padding: 24px 0; }
   .head nav { gap: 2px 22px; }
   .hero > video, .hero > img { aspect-ratio: 4 / 3; }
-  .hero-actions { right: 10px; bottom: 10px; gap: 6px; }
+  .hero-actions { right: 10px; bottom: 10px; }
+  .toggle { left: 10px; bottom: 10px; }
   .hero-actions .button { padding: 9px 14px; font-size: 0.68rem; }
   .grid { grid-template-columns: 1fr; }
   .cards .track > li { width: 86%; }

@@ -45,10 +45,12 @@ export function HeroVideo({ locale, video, poster, alt, reel }: Props) {
           onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onError={() => setBroken(true)}
         />
       ) : poster ? <img src={poster} alt={alt} fetchPriority="high" /> : null}
-      <div className="hero-actions">
-        {embed && <button type="button" className="button play" onClick={showReel}>{t.watchReel}</button>}
-        {video && !broken && <button type="button" className="button quiet" onClick={toggle}>{playing ? t.pause : t.play}</button>}
-      </div>
+      {video && !broken && (
+        <button type="button" className="toggle" onClick={toggle} aria-label={playing ? t.pause : t.play} title={playing ? t.pause : t.play}>
+          <svg viewBox="0 0 12 12" aria-hidden="true">{playing ? <path d="M3 2h2v8H3zM7 2h2v8H7z" /> : <path d="M3 1.5v9l7.5-4.5z" />}</svg>
+        </button>
+      )}
+      {embed && <div className="hero-actions"><button type="button" className="button play" onClick={showReel}>{t.watchReel}</button></div>}
       {embed && (
         <dialog ref={dialog} aria-label={t.watchReel} onClose={() => setOpen(false)} onClick={(e) => e.target === e.currentTarget && dialog.current?.close()}>
           <form method="dialog"><button className="button quiet">{t.close}</button></form>
