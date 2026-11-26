@@ -8,3 +8,7 @@ node_modules/
 /seed-media/
 *.tsbuildinfo
 next-env.d.ts
+.vercel
+
+.vercel
+.env*

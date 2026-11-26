@@ -1,0 +1,10 @@
+# Jamais envoyé à Vercel par « vercel deploy » depuis ce poste.
+.env*
+!.env.example
+node_modules
+.next
+media
+seed-media
+.superpowers
+.claude
+*.tsbuildinfo
