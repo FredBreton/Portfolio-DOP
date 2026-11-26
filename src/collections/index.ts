@@ -46,7 +46,8 @@ const Projects: CollectionConfig = {
       ],
     },
     {
-      name: 'prix', label: 'Prix et festivals', labels: { singular: 'Prix ou festival', plural: 'Prix et festivals' }, type: 'array',
+      name: 'prix', label: 'Sélections et prix du film', labels: { singular: 'Sélection ou prix', plural: 'Sélections et prix' }, type: 'array',
+      admin: { description: 'Ce que le film a reçu, pas Frédérick personnellement. Ex. : Fantasia 2025 – Prix du public.' },
       fields: [{ name: 'texte', label: 'Prix ou festival', type: 'text', localized: true, required: true }],
     },
     { name: 'lien', label: 'Lien externe', type: 'text', validate: validateLink },

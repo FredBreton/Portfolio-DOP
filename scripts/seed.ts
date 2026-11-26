@@ -8,6 +8,7 @@ import path from 'node:path'
 import { getPayload } from 'payload'
 
 import config from '../src/payload.config'
+import { awards } from './awards'
 
 const payload = await getPayload({ config })
 const dir = path.resolve(process.cwd(), 'seed-media')
@@ -64,11 +65,15 @@ for (const p of projects) {
     data: {
       titre: p.titre, categorie: p.categorie, format: p.format[0], annee: p.annee, couverture, video: p.video, lien: p.lien,
       realisation: p.realisation, role: 'Direction photo', accueil: true, _status: 'published',
+      prix: awards[p.titre]?.map((a) => ({ texte: a.fr })),
     },
   })
   await payload.update({
     collection: 'projects', id: doc.id, locale: 'en',
-    data: { titre: p.titre, format: p.format[1], role: 'Director of photography', _status: 'published' },
+    data: {
+      titre: p.titre, format: p.format[1], role: 'Director of photography', _status: 'published',
+      prix: doc.prix?.map((row, i) => ({ id: row.id, texte: awards[p.titre][i].en })),
+    },
   })
 }
 

@@ -151,6 +151,9 @@ export interface Project {
   realisation?: string | null;
   production?: string | null;
   role?: string | null;
+  /**
+   * Ce que le film a reçu, pas Frédérick personnellement. Ex. : Fantasia 2025 – Prix du public.
+   */
   prix?:
     | {
         texte: string;
