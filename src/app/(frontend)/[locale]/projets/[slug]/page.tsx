@@ -8,7 +8,7 @@ import { Words } from '@/components/Words'
 import { VideoPlayer } from '@/components/VideoPlayer'
 import { getProject, getProjectsOf, getSettings, idOf, media, medias, siteUrl } from '@/lib/data'
 import { copy, isLocale, toPublic } from '@/lib/locale'
-import { alternates, jsonLd, summary } from '@/lib/metadata'
+import { alternates, jsonLd, shareImage, summary } from '@/lib/metadata'
 
 type Props = { params: Promise<{ locale: string; slug: string }> }
 
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title, description, type: 'article', url: toPublic(locale, `/projets/${slug}`),
       siteName: (await getSettings(locale)).nom, locale: locale === 'fr' ? 'fr_CA' : 'en_CA',
-      images: image?.url ? [image.sizes?.moyenne?.url ?? image.url] : undefined,
+      images: shareImage(image),
     },
   }
 }

@@ -10,7 +10,7 @@ import { LanguageLink } from '@/components/LanguageLink'
 import { Reveal } from '@/components/Reveal'
 import { getMenu, getSettings, media, siteUrl } from '@/lib/data'
 import { copy, isLocale, toPublic } from '@/lib/locale'
-import { jsonLd } from '@/lib/metadata'
+import { jsonLd, shareImage } from '@/lib/metadata'
 
 import './site.css'
 
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: s.nom,
       locale: locale === 'fr' ? 'fr_CA' : 'en_CA',
       type: 'website',
-      images: image?.url ? [image.sizes?.moyenne?.url ?? image.url] : undefined,
+      images: shareImage(image),
     },
   }
 }

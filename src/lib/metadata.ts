@@ -8,6 +8,10 @@ export const alternates = (locale: Locale, path: string): Metadata['alternates']
   languages: { 'fr-CA': toPublic('fr', path), 'en-CA': toPublic('en', path), 'x-default': toPublic('fr', path) },
 })
 
+/** Image d'aperçu de partage en JPEG (voir app/partage). `v` change l'adresse quand l'image est remplacée. */
+export const shareImage = (image: { id: number; url?: string | null; updatedAt: string } | null) =>
+  image?.url ? [{ url: `/partage/${image.id}.jpg?v=${Date.parse(image.updatedAt)}`, width: 1200, height: 630, type: 'image/jpeg' }] : undefined
+
 /** Fiche lisible par Google, glissée dans la page. `<` est échappé pour qu'aucun texte ne ferme la balise. */
 export const jsonLd = (data: Record<string, unknown>) => ({
   __html: JSON.stringify({ '@context': 'https://schema.org', ...data }).replaceAll('<', '\\u003c'),
