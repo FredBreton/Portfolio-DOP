@@ -4,6 +4,7 @@ import * as migration_20261126_161652_video_traduite from './20261126_161652_vid
 import * as migration_20261126_165919_mention_vignette from './20261126_165919_mention_vignette';
 import * as migration_20261126_170449_video_type from './20261126_170449_video_type';
 import * as migration_20261126_172834_sans_camera from './20261126_172834_sans_camera';
+import * as migration_20261127_184815_storage_objectkey from './20261127_184815_storage_objectkey';
 
 export const migrations = [
   {
@@ -34,6 +35,11 @@ export const migrations = [
   {
     up: migration_20261126_172834_sans_camera.up,
     down: migration_20261126_172834_sans_camera.down,
-    name: '20261126_172834_sans_camera'
+    name: '20261126_172834_sans_camera',
+  },
+  {
+    up: migration_20261127_184815_storage_objectkey.up,
+    down: migration_20261127_184815_storage_objectkey.down,
+    name: '20261127_184815_storage_objectkey'
   },
 ];
