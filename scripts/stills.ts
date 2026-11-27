@@ -1,7 +1,8 @@
 /**
  * Ajoute les stills d'un projet : node --import tsx scripts/stills.ts
  * Fichiers dans seed-media/<dossier>/01.jpg, 02.jpg… dans l'ordre des descriptions.
- * Remplace les stills déjà présents du projet.
+ * Remplace les stills déjà présents du projet et efface les anciens fichiers.
+ * Images recadrées sans bandes noires avant (Au pied du mur : 67 px en haut et en bas sur 3840 × 2160).
  */
 import './load-env'
 import path from 'node:path'
@@ -43,6 +44,9 @@ for (const [titre, { dossier, alt }] of Object.entries(stills)) {
     images.push(doc.id)
   }
   await payload.update({ collection: 'projects', id: docs[0].id, locale: 'fr', data: { images, _status: 'published' } })
+  // Les anciens stills de ce projet ne servent plus : on les efface pour ne pas encombrer la médiathèque.
+  const anciens = (docs[0].images ?? []).map((m) => (typeof m === 'number' ? m : m.id))
+  if (anciens.length) await payload.delete({ collection: 'media', where: { id: { in: anciens } } })
   console.log(`${titre} : ${images.length} stills`)
 }
 process.exit(0)

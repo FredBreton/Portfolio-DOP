@@ -27,7 +27,8 @@ export function parseVideo(value: unknown): Embed | null {
     // Vidéo « non répertoriée » : la clé suit le numéro ou se trouve dans ?h=.
     const key = url.searchParams.get('h') ?? parts[at + 1]
     const h = key && /^[a-f0-9]+$/i.test(key) ? `&h=${key}` : ''
-    return { provider: 'Vimeo', src: `https://player.vimeo.com/video/${parts[at]}?autoplay=1&dnt=1${h}` }
+    // transparent=0 : sinon Chrome peint en blanc les marges du lecteur (thème clair de Vimeo dans une page sombre).
+    return { provider: 'Vimeo', src: `https://player.vimeo.com/video/${parts[at]}?autoplay=1&dnt=1&transparent=0${h}` }
   }
   return null
 }

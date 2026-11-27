@@ -20,6 +20,7 @@ test('seules les vidéos YouTube et Vimeo sont reconnues', () => {
   assert.match(parseVideo('https://www.youtube.com/watch?v=Iv631_HkWv0')!.src, /youtube-nocookie\.com\/embed\/Iv631_HkWv0/)
   assert.match(parseVideo('https://youtu.be/Iv631_HkWv0?t=3')!.src, /Iv631_HkWv0/)
   assert.match(parseVideo('https://vimeo.com/1147476870')!.src, /video\/1147476870/)
+  assert.match(parseVideo('https://vimeo.com/1147476870')!.src, /transparent=0/)
   assert.match(parseVideo('https://vimeo.com/862045443/ab12cd34ef')!.src, /h=ab12cd34ef/)
   const refused = ['', null, 'http://vimeo.com/1', 'https://vimeo.com.evil.test/1', 'javascript:alert(1)', 'https://www.youtube.com/watch?v="><script>']
   for (const bad of refused) assert.equal(parseVideo(bad), null, String(bad))
