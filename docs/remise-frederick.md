@@ -49,7 +49,7 @@ Ils se trouvent dans Vercel, projet, Settings, Environment Variables. Ce sont de
 | `PAYLOAD_SECRET` | Protéger les connexions à l'admin |
 | `SITE_URL`, `SITE_INDEXABLE` | L'adresse du site; `false` cache le site de Google jusqu'au lancement |
 | `S3_…` | Relier le site au stockage des images (R2). Les deux clés viennent d'un jeton Cloudflare nommé `site-frederick-breton`, limité à l'espace `frederick-breton-media` |
-| `SMTP_…` (à venir) | Envoyer les messages du formulaire dans ta boîte courriel |
+| `SMTP_…` | Envoyer les messages du formulaire dans ta boîte courriel, par Brevo. `SMTP_PASSWORD` est une clé Brevo nommée `site-frederick-breton` |
 
 ## Le stockage des images (Cloudflare R2)
 
@@ -57,9 +57,16 @@ Ils se trouvent dans Vercel, projet, Settings, Environment Variables. Ce sont de
 - Dans l'espace, onglet Settings, la règle **CORS** autorise seulement l'adresse du site, écrite sans `/` à la fin. Au lancement, ajoute `https://frederickbreton.com` à cette règle, sinon les envois d'images échoueront.
 - Si une clé fuit : Cloudflare, R2, Manage API tokens, supprime le jeton, crée-en un nouveau avec les mêmes réglages, puis remplace les deux clés `S3_ACCESS_KEY_ID` et `S3_SECRET_ACCESS_KEY` dans Vercel et refais une mise en ligne.
 
+## Les courriels du formulaire (Brevo)
+
+- Les messages du formulaire partent par Brevo (https://app.brevo.com, gratuit jusqu'à 300 courriels par jour), depuis ton Gmail, vers l'adresse choisie dans Réglages de l'admin.
+- Chaque message est aussi gardé dans l'admin, menu **Messages**, même si le courriel n'est pas parti.
+- **La clé expire** à sa date de fin, ou après 90 jours sans aucun envoi. Si les courriels n'arrivent plus : Brevo, Settings, SMTP & API, onglet SMTP, **Generate a new SMTP key**, puis remplace `SMTP_PASSWORD` dans Vercel et refais une mise en ligne (Deployments, ⋯, Redeploy).
+- Au lancement, authentifie le domaine dans Brevo (4 lignes à ajouter chez Sicay) et passe à une adresse du domaine, pour éviter les indésirables.
+
 ## Avant le lancement
 
 - Choisir l'hébergement final. Le forfait gratuit de Vercel est réservé à un usage non commercial; un site qui vend des services devrait passer à Vercel Pro (environ 20 $ US par mois) ou aller ailleurs.
-- Brancher l'envoi des courriels du formulaire et la protection anti-robots.
+- Brancher la protection anti-robots du formulaire.
 - Relier frederickbreton.com au nouveau site chez Sicay. Attention : tes courriels du domaine dépendent du même réglage, à vérifier avec Sicay avant.
 - Mettre `SITE_INDEXABLE` à `true` pour que Google trouve le site.
