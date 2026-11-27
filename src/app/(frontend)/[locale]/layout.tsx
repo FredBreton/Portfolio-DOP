@@ -10,6 +10,7 @@ import { LanguageLink } from '@/components/LanguageLink'
 import { Reveal } from '@/components/Reveal'
 import { getMenu, getSettings, media, siteUrl } from '@/lib/data'
 import { copy, isLocale, toPublic } from '@/lib/locale'
+import { jsonLd } from '@/lib/metadata'
 
 import './site.css'
 
@@ -64,6 +65,10 @@ export default async function Layout({ children, params }: Props & { children: R
             </nav>
           </header>
           <main id="contenu"><ViewTransition default="page">{children}</ViewTransition></main>
+          <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd({
+            '@type': 'Person', name: s.nom, jobTitle: s.metier, url: siteUrl() + toPublic(locale, '/'),
+            sameAs: s.reseaux?.map((r) => r.url),
+          })} />
           <Reveal />
           <CursorLabel label={t.view} />
           <footer className="foot">

@@ -6,9 +6,9 @@ import { Gallery } from '@/components/Gallery'
 import { Picture } from '@/components/Picture'
 import { Words } from '@/components/Words'
 import { VideoPlayer } from '@/components/VideoPlayer'
-import { getProject, getProjectsOf, idOf, media, medias } from '@/lib/data'
+import { getProject, getProjectsOf, getSettings, idOf, media, medias, siteUrl } from '@/lib/data'
 import { copy, isLocale, toPublic } from '@/lib/locale'
-import { alternates } from '@/lib/metadata'
+import { alternates, jsonLd, summary } from '@/lib/metadata'
 
 type Props = { params: Promise<{ locale: string; slug: string }> }
 
@@ -19,11 +19,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = isLocale(locale) ? await getProject(locale, slug) : undefined
   if (!project || !isLocale(locale)) return {}
   const image = media(project.couverture)
+  const title = project.seo?.titre || project.titre
+  const description = project.seo?.description || summary(project.description)
+  const page = alternates(locale, `/projets/${slug}`)
   return {
-    title: project.seo?.titre || project.titre,
-    description: project.seo?.description || project.description || undefined,
-    alternates: alternates(locale, `/projets/${slug}`),
-    openGraph: { images: image?.url ? [image.sizes?.moyenne?.url ?? image.url] : undefined },
+    title,
+    description,
+    alternates: page,
+    // Next remplace tout le bloc openGraph du parent : on redonne nom du site et langue.
+    openGraph: {
+      title, description, type: 'article', url: toPublic(locale, `/projets/${slug}`),
+      siteName: (await getSettings(locale)).nom, locale: locale === 'fr' ? 'fr_CA' : 'en_CA',
+      images: image?.url ? [image.sizes?.moyenne?.url ?? image.url] : undefined,
+    },
   }
 }
 
@@ -47,9 +55,18 @@ export default async function ProjectPage({ params }: Props) {
     [t.year, project.annee],
     ...(project.equipe ?? []).map((m) => [m.poste, m.noms]),
   ].filter(([label, value]) => label && value)
+  const coverUrl = media(project.couverture)?.url
+  const film = jsonLd({
+    '@type': 'Movie', name: project.titre, url: siteUrl() + toPublic(locale, `/projets/${slug}`),
+    description: summary(project.description, 300), dateCreated: project.annee ? String(project.annee) : undefined,
+    director: project.realisation ? { '@type': 'Person', name: project.realisation } : undefined,
+    image: coverUrl ? new URL(coverUrl, siteUrl()).href : undefined,
+    contributor: { '@type': 'Person', name: (await getSettings(locale)).nom, jobTitle: project.role ?? undefined },
+  })
 
   return (
     <article className="project">
+      <script type="application/ld+json" dangerouslySetInnerHTML={film} />
       <Link className="back" href={toPublic(locale, '/#projets')}>← {t.allProjects}</Link>
       {project.video ? <VideoPlayer locale={locale} url={project.video} title={project.titre} label={project.videoType === 'film' ? t.watchFilm : t.watchTrailer}>{cover}</VideoPlayer> : <div className="cover">{cover}</div>}
       <div className="project-text">

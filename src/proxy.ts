@@ -20,4 +20,4 @@ export function proxy(req: NextRequest) {
   return NextResponse.rewrite(url)
 }
 
-export const config = { matcher: ['/((?!(?:api|admin|_next|preview)(?:/|$)|.*\\.[^/]+$).*)'] }
+export const config = { matcher: ['/((?!(?:api|admin|_next|preview|apple-icon)(?:/|$)|.*\\.[^/]+$).*)'] }

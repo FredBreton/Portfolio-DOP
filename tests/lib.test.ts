@@ -53,3 +53,12 @@ test('l’empreinte de l’expéditeur ne révèle pas son adresse', () => {
   assert.equal(senderKey('A@b.c', 's'), senderKey('a@b.c', 's'))
   assert.notEqual(senderKey('a@b.c', 's'), senderKey('a@b.c', 'autre'))
 })
+
+test('les fiches Google et les résumés de partage restent sûrs et courts', async () => {
+  const { jsonLd, summary } = await import('../src/lib/metadata')
+  assert.doesNotMatch(jsonLd({ name: '</script><script>alert(1)' }).__html, /</)
+  assert.equal(summary('Court.'), 'Court.')
+  const long = summary('mot '.repeat(80))!
+  assert.ok(long.length <= 161 && long.endsWith('mot…'), long)
+  assert.equal(summary(null), undefined)
+})
