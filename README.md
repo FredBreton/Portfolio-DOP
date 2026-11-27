@@ -45,3 +45,4 @@ Deux points à surveiller : le forfait gratuit de Vercel est réservé à un usa
 4. Sauvegarder l'ancien WordPress.
 5. Changer seulement les adresses web du domaine chez Sicay (A et `www`). Ne pas toucher aux enregistrements de courriel (MX, SPF, DKIM). Attention : le MX pointe vers `frederickbreton.com` lui-même. Changer l'adresse A déplacerait donc aussi le courriel du domaine; s'il sert, demander à Sicay de pointer le MX vers un autre nom d'abord.
 6. Vérifier `/fiction/`, `/portfolio/` et `/contact/`.
+7. Inscrire `frederickbreton.com` dans Google Search Console comme propriété de domaine : ajouter chez Sicay l'enregistrement TXT de vérification fourni par Google, puis soumettre `https://frederickbreton.com/sitemap.xml`.

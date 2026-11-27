@@ -11,7 +11,8 @@
 
 * { box-sizing: border-box; margin: 0; }
 html { background: var(--bg); color: var(--text); color-scheme: dark; scroll-padding-top: 24px; -webkit-text-size-adjust: 100%; }
-body { font-size: 1rem; line-height: 1.5; }
+/* clip : 100vw compte la barre de défilement, sans ça la page défilerait de côté. */
+body { font-size: 1rem; line-height: 1.5; overflow-x: clip; }
 img, video { display: block; max-width: 100%; }
 img { height: auto; background: #161616; }
 a { color: inherit; text-decoration: none; }
@@ -72,7 +73,8 @@ main { flex: 1; }
 .button.arrow::after { content: '→'; font-size: 1.1em; letter-spacing: 0; transition: transform 0.5s var(--ease); }
 .button.arrow:hover::after { transform: translateX(5px); }
 
-.hero { position: relative; }
+/* Pleine largeur de l'écran, hors des marges du site. */
+.hero { position: relative; margin-inline: calc(50% - 50vw); }
 .hero > video, .hero > img { width: 100%; height: clamp(340px, calc(100svh - 270px), 880px); object-fit: cover; background: #161616; }
 .hero::after { content: ''; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent, rgb(0 0 0 / 0.45)); pointer-events: none; }
 .hero-actions { position: absolute; z-index: 1; right: 22px; bottom: 22px; display: flex; gap: 10px; }
