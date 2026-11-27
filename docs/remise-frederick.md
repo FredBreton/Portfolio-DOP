@@ -19,7 +19,7 @@ Pour modifier le contenu au quotidien (projets, textes, vidéos), voir le [guide
 | Le code | Les pages, le design, les fonctions | GitHub : https://github.com/FredBreton/Portfolio-DOP | Toi (FredBreton). Alexis y collabore. | Gratuit |
 | L'hébergement | Fait tourner le site | Vercel : https://vercel.com/frederick-breton/frederick-breton | Toi (fredbreton1354) | Gratuit (forfait Hobby) |
 | La base de données | Les textes, projets, messages reçus | Neon, ouvert depuis Vercel : projet, puis Storage, puis Open in Neon | Toi, par Vercel | Gratuit |
-| Les images et vidéos | Les fichiers envoyés dans l'admin | Cloudflare R2, espace `frederick-breton-media` : https://dash.cloudflare.com | Toi | Gratuit jusqu'à 10 Go (à compléter) |
+| Les images et vidéos | Les fichiers envoyés dans l'admin | Cloudflare R2, espace `frederick-breton-media` : https://dash.cloudflare.com | Toi | Gratuit jusqu'à 10 Go, puis environ 0,015 $ US par Go par mois |
 | Le nom de domaine | frederickbreton.com et tes courriels du domaine | Sicay (sicay.net), ton fournisseur actuel | Toi | Ton abonnement actuel |
 
 Le dépôt GitHub est public : tout le monde peut lire le code, mais pas tes données ni tes clés, qui restent dans Vercel.
@@ -48,8 +48,14 @@ Ils se trouvent dans Vercel, projet, Settings, Environment Variables. Ce sont de
 | `DATABASE_URL` | Relier le site à la base Neon (créé par Neon) |
 | `PAYLOAD_SECRET` | Protéger les connexions à l'admin |
 | `SITE_URL`, `SITE_INDEXABLE` | L'adresse du site; `false` cache le site de Google jusqu'au lancement |
-| `S3_…` | Relier le site au stockage des images (R2) |
+| `S3_…` | Relier le site au stockage des images (R2). Les deux clés viennent d'un jeton Cloudflare nommé `site-frederick-breton`, limité à l'espace `frederick-breton-media` |
 | `SMTP_…` (à venir) | Envoyer les messages du formulaire dans ta boîte courriel |
+
+## Le stockage des images (Cloudflare R2)
+
+- Les images et vidéos envoyées dans l'admin vont dans l'espace `frederick-breton-media`. Elles sont servies par une adresse publique en `.r2.dev`.
+- Dans l'espace, onglet Settings, la règle **CORS** autorise seulement l'adresse du site, écrite sans `/` à la fin. Au lancement, ajoute `https://frederickbreton.com` à cette règle, sinon les envois d'images échoueront.
+- Si une clé fuit : Cloudflare, R2, Manage API tokens, supprime le jeton, crée-en un nouveau avec les mêmes réglages, puis remplace les deux clés `S3_ACCESS_KEY_ID` et `S3_SECRET_ACCESS_KEY` dans Vercel et refais une mise en ligne.
 
 ## Avant le lancement
 
