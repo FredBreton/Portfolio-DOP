@@ -75,7 +75,7 @@ for (const p of projects) {
 }
 
 const portrait = await upload('portrait.jpg', 'Frédérick Breton derrière sa caméra', 'Frédérick Breton behind his camera')
-const loop = await upload('boucle-accueil.mp4', 'Extraits du travail de Frédérick Breton', 'Excerpts from Frédérick Breton’s work')
+const loop = await upload('banniere-web.mp4', 'Extraits du travail de Frédérick Breton', 'Excerpts from Frédérick Breton’s work')
 
 type Localized = { fr: string; en: string }
 type Draft = { titre: Localized; intro?: Localized; slug: string; menu: boolean; status: 'draft' | 'published'; blocs: (l: 'fr' | 'en', old?: any[]) => any[] }
