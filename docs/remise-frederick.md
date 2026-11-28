@@ -50,6 +50,8 @@ Ils se trouvent dans Vercel, projet, Settings, Environment Variables. Ce sont de
 | `SITE_URL`, `SITE_INDEXABLE` | L'adresse du site; `false` cache le site de Google jusqu'au lancement |
 | `S3_…` | Relier le site au stockage des images (R2). Les deux clés viennent d'un jeton Cloudflare nommé `site-frederick-breton`, limité à l'espace `frederick-breton-media` |
 | `SMTP_…` | Envoyer les messages du formulaire dans ta boîte courriel, par Brevo. `SMTP_PASSWORD` est une clé Brevo nommée `site-frederick-breton` |
+| `CRON_SECRET` | Empêche quiconque d'autre que Vercel de déclencher le courriel mensuel |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` | La protection anti-robots du formulaire (Cloudflare Turnstile) |
 
 ## Le stockage des images (Cloudflare R2)
 
@@ -61,6 +63,7 @@ Ils se trouvent dans Vercel, projet, Settings, Environment Variables. Ce sont de
 
 - Les messages du formulaire partent par Brevo (https://app.brevo.com, gratuit jusqu'à 300 courriels par jour), depuis ton Gmail, vers l'adresse choisie dans Réglages de l'admin.
 - Chaque message est aussi gardé dans l'admin, menu **Messages**, même si le courriel n'est pas parti.
+- Le 1er de chaque mois, le site t'envoie un courriel « Le formulaire de ton site fonctionne ». Il garde la clé active. **Si tu ne le reçois pas**, la clé a sans doute expiré.
 - **La clé expire** à sa date de fin, ou après 90 jours sans aucun envoi. Si les courriels n'arrivent plus : Brevo, Settings, SMTP & API, onglet SMTP, **Generate a new SMTP key**, puis remplace `SMTP_PASSWORD` dans Vercel et refais une mise en ligne (Deployments, ⋯, Redeploy).
 - Au lancement, authentifie le domaine dans Brevo (4 lignes à ajouter chez Sicay) et passe à une adresse du domaine, pour éviter les indésirables.
 
