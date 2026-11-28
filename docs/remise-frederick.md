@@ -63,13 +63,12 @@ Ils se trouvent dans Vercel, projet, Settings, Environment Variables. Ce sont de
 
 - Les messages du formulaire partent par Brevo (https://app.brevo.com, gratuit jusqu'à 300 courriels par jour), depuis ton Gmail, vers l'adresse choisie dans Réglages de l'admin.
 - Chaque message est aussi gardé dans l'admin, menu **Messages**, même si le courriel n'est pas parti.
-- Le 1er de chaque mois, le site t'envoie un courriel « Le formulaire de ton site fonctionne ». Il garde la clé active. **Si tu ne le reçois pas**, la clé a sans doute expiré.
+- Le 1er janvier, mars, mai, juillet, septembre et novembre, le site t'envoie un courriel « Le formulaire de ton site fonctionne ». Il garde la clé active. **Si tu ne le reçois pas**, la clé a sans doute expiré.
 - **La clé expire** à sa date de fin, ou après 90 jours sans aucun envoi. Si les courriels n'arrivent plus : Brevo, Settings, SMTP & API, onglet SMTP, **Generate a new SMTP key**, puis remplace `SMTP_PASSWORD` dans Vercel et refais une mise en ligne (Deployments, ⋯, Redeploy).
 - Au lancement, authentifie le domaine dans Brevo (4 lignes à ajouter chez Sicay) et passe à une adresse du domaine, pour éviter les indésirables.
 
 ## Avant le lancement
 
 - Choisir l'hébergement final. Le forfait gratuit de Vercel est réservé à un usage non commercial; un site qui vend des services devrait passer à Vercel Pro (environ 20 $ US par mois) ou aller ailleurs.
-- Brancher la protection anti-robots du formulaire.
 - Relier frederickbreton.com au nouveau site chez Sicay. Attention : tes courriels du domaine dépendent du même réglage, à vérifier avec Sicay avant.
 - Mettre `SITE_INDEXABLE` à `true` pour que Google trouve le site.

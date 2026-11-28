@@ -2,5 +2,5 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "buildCommand": "npm run ci",
-  "crons": [{ "path": "/api/rappel-courriel", "schedule": "0 13 1 * *" }]
+  "crons": [{ "path": "/api/rappel-courriel", "schedule": "0 13 1 */2 *" }]
 }
